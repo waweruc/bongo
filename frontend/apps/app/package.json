@@ -1,5 +1,5 @@
 {
-  "name": "@liam-hq/app",
+  "name": "bongo",
   "private": true,
   "version": "0.1.0",
   "dependencies": {

@@ -88,7 +88,7 @@ To set up a development environment, please follow these steps:
 
    | package            | url                   |
    | ------------------ | --------------------- |
-   | @liam-hq/app       | http://localhost:3001 |
+   | bongo       | http://localhost:3001 |
    | @liam-hq/cli       | http://localhost:5173 |
    | @liam-hq/docs      | http://localhost:3002 |
    | @liam-hq/storybook | http://localhost:6006 |

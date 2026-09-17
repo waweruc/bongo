@@ -39,8 +39,8 @@ git clone <this-repo-url>
 cd bongo
 pnpm install
 cp .env.template .env   # fill in your own Supabase and DeepSeek/OpenAI-compatible API credentials
-pnpm --filter @liam-hq/app build
-pnpm --filter @liam-hq/app start
+pnpm --filter bongo build
+pnpm --filter bongo start
 ```
 
 See [CLAUDE.md](CLAUDE.md) for day-to-day development commands.

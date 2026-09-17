@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Run only the main web app (port 3001)
-pnpm --filter @liam-hq/app dev
+pnpm --filter bongo dev
 
 # Format code
 pnpm --filter @liam-hq/agent fmt
@@ -29,7 +29,7 @@ pnpm --filter @liam-hq/agent test
 ### Monorepo Structure
 
 #### Applications
-- **frontend/apps/app** - Main Next.js web application (`@liam-hq/app`)
+- **frontend/apps/app** - Main Next.js web application (`bongo`)
 - **frontend/apps/docs** - Documentation site (`@liam-hq/docs`)
 
 #### Public Packages

@@ -14,7 +14,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "@liam-hq/agent",
-    "@liam-hq/app",
+    "bongo",
     "@liam-hq/docs",
     "@liam-hq/figma-to-css-variables",
     "@liam-hq/db",

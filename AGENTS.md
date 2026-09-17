@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Modules
-- frontend/apps/*: Next.js apps (e.g., `@liam-hq/app`, `@liam-hq/docs`).
+- frontend/apps/*: Next.js apps (e.g., `bongo`, `@liam-hq/docs`).
 - frontend/packages/*: Shared libraries and tools (e.g., `schema`, `erd-core`, `cli`, `ui`).
 - frontend/internal-packages/*: Infra and tooling (`e2e`, `configs`, `storybook`, `agent`).
 - assets/: Images and media. docs/: Documentation. scripts/: Repo utilities.
@@ -9,14 +9,14 @@
 ## Build, Test, and Development
 - Install: `pnpm install`
 - All apps/packages (Turbo):
-  - Dev: `pnpm dev` (or one app: `pnpm -F @liam-hq/app dev`)
+  - Dev: `pnpm dev` (or one app: `pnpm -F bongo dev`)
   - Build: `pnpm build`
   - Test (unit): `pnpm test`
   - E2E (Playwright): `pnpm test:e2e`
   - Coverage: `pnpm test:coverage`
 - App-only examples:
-  - Run Next dev: `pnpm -F @liam-hq/app dev:next`
-  - Build Next: `pnpm -F @liam-hq/app build`
+  - Run Next dev: `pnpm -F bongo dev:next`
+  - Build Next: `pnpm -F bongo build`
 
 ## Coding Style & Naming
 - Language: TypeScript/TSX; React components in PascalCase (e.g., `App.tsx`); utilities in camelCase (e.g., `mergeSchema.ts`).

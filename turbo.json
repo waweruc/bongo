@@ -35,7 +35,7 @@
       "cache": false,
       "persistent": true
     },
-    "@liam-hq/app#dev": {
+    "bongo#dev": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
