@@ -6,10 +6,15 @@ import { ROUTE_PREFIXES } from './libs/routes/constants'
 export async function updateSession(request: NextRequest) {
   const path = request.nextUrl.pathname
 
-  // Skip middleware for public routes, erd pages, and static files
+  // Skip middleware for public routes, erd pages, static files, and
+  // browser/platform probe paths (e.g. Chrome DevTools' automatic request to
+  // /.well-known/appspecific/com.chrome.devtools.json). These aren't real
+  // navigations, so letting them fall through to the "no user" branch below
+  // would overwrite the returnTo cookie with a bogus redirect target.
   if (
     path.startsWith(ROUTE_PREFIXES.PUBLIC) ||
     path.startsWith(ROUTE_PREFIXES.ERD) ||
+    path.startsWith(ROUTE_PREFIXES.WELL_KNOWN) ||
     path.startsWith('/api/logout')
   ) {
     return NextResponse.next()

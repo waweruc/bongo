@@ -5,4 +5,5 @@ export const ROUTE_PREFIXES = {
   LOGIN: '/login',
   AUTH: '/auth',
   ERD: '/erd',
+  WELL_KNOWN: '/.well-known',
 } as const
