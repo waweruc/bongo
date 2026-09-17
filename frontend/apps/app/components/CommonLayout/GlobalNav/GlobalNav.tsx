@@ -1,6 +1,6 @@
 import {
   BaseGlobalNav,
-  BongoDbLogo,
+  BongoErdLogo,
   BongoLogoMark,
   LayoutGrid,
   Settings,
@@ -37,7 +37,7 @@ export const GlobalNav: FC<Props> = ({
             <BongoLogoMark />
           </Link>
           <Link href="/design_sessions/new" className={itemStyles.labelArea}>
-            <BongoDbLogo className={styles.liamMigrationLogo} />
+            <BongoErdLogo className={styles.liamMigrationLogo} />
           </Link>
         </>
       }

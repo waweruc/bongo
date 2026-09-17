@@ -49,7 +49,7 @@ export const SignInModal: FC<Props> = ({
               <div className={authStyles.titleWrapper}>
                 <BongoLogoMark className={authStyles.logoMark} />
                 <ModalTitle className={authStyles.title}>
-                  Sign in to Bongo DB
+                  Sign in to Bongo ERD
                 </ModalTitle>
               </div>
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs'
 import {
-  BongoDbLogo,
+  BongoErdLogo,
   BongoLogoMark,
   GithubLogo,
   LiamLogo,
@@ -10,7 +10,7 @@ import {
 
 const LogoShowcase = () => {
   const logosMap = {
-    BongoDbLogo,
+    BongoErdLogo,
     BongoLogoMark,
     GithubLogo,
     LiamLogo,

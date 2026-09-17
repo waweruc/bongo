@@ -53,7 +53,7 @@ export const CookieConsent: FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        <h4 className={styles.title}>Bongo DB Cookie Consent</h4>
+        <h4 className={styles.title}>Bongo ERD Cookie Consent</h4>
         <div>
           <p className={styles.description}>
             By clicking “Accept All Cookies”, you agree to the storing of

@@ -37,7 +37,7 @@ export const AppBar: FC = () => {
         </TooltipProvider>
       </div>
 
-      <h1 className={styles.title}>Bongo DB</h1>
+      <h1 className={styles.title}>Bongo ERD</h1>
 
       <div className={styles.rightSide}>
         <div className={styles.iconButtonGroup}>

@@ -56,7 +56,7 @@ export function InvitationCard({
                 <strong className={styles.organizationName}>
                   {organizationName}
                 </strong>{' '}
-                organization on Bongo DB.
+                organization on Bongo ERD.
                 <br />
                 Please accept the invitation below to join.
               </div>

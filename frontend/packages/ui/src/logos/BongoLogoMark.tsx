@@ -4,13 +4,13 @@ type Props = ComponentPropsWithoutRef<'svg'>
 
 /**
  * A pair of bongo drums - the low hembra and the high macho - standing in
- * for the two halves of Bongo DB: your schema and the agent that plays it.
+ * for the two halves of Bongo ERD: your schema and the agent that plays it.
  */
 export const BongoLogoMark: FC<Props> = (props) => {
   return (
     <svg
       role="img"
-      aria-label="Bongo DB Logo"
+      aria-label="Bongo ERD Logo"
       width={24}
       height={24}
       viewBox="0 0 100 92"

@@ -69,7 +69,7 @@ export const SignUpModal: FC<Props> = ({
               <div className={authStyles.titleWrapper}>
                 <BongoLogoMark className={authStyles.logoMark} />
                 <ModalTitle className={authStyles.title}>
-                  Welcome to Bongo DB
+                  Welcome to Bongo ERD
                 </ModalTitle>
               </div>
 

@@ -49,7 +49,7 @@ export const ChatInput: FC<Props> = ({ isStreaming, onSend, onCancel }) => {
         <div className={styles.inputSection}>
           <textarea
             ref={textareaRef}
-            placeholder="Ask Bongo DB to make changes..."
+            placeholder="Ask Bongo ERD to make changes..."
             value={textContent}
             onChange={handleTextareaChange}
             onKeyDown={handleEnterKeySubmission}

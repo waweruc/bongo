@@ -33,7 +33,7 @@ export async function LoginPage() {
         <div className={styles.card}>
           <div className={styles.titleWrapper}>
             <BongoLogoMark className={styles.logoMark} />
-            <h1 className={styles.title}>Sign in to Bongo DB</h1>
+            <h1 className={styles.title}>Sign in to Bongo ERD</h1>
           </div>
 
           <div className={styles.oauthList}>

@@ -1,4 +1,4 @@
-export * from './BongoDbLogo'
+export * from './BongoErdLogo'
 export * from './BongoLogoMark'
 export * from './GithubLogo'
 export * from './LiamLogo'

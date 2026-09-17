@@ -19,11 +19,11 @@ const montserrat = Montserrat({
 const imageUrl = '/assets/liam_erd.png'
 
 export const metadata: Metadata = {
-  title: 'Bongo DB',
+  title: 'Bongo ERD',
   description:
-    'Build and manage your database schemas with Bongo DB. Create, visualize, and collaborate on database designs.',
+    'Build and manage your database schemas with Bongo ERD. Create, visualize, and collaborate on database designs.',
   openGraph: {
-    siteName: 'Bongo DB',
+    siteName: 'Bongo ERD',
     type: 'website',
     locale: 'en_US',
     images: imageUrl,

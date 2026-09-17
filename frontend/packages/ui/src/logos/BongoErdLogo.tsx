@@ -2,11 +2,11 @@ import type { ComponentPropsWithoutRef, FC } from 'react'
 
 type Props = ComponentPropsWithoutRef<'svg'>
 
-export const BongoDbLogo: FC<Props> = (props) => {
+export const BongoErdLogo: FC<Props> = (props) => {
   return (
     <svg
       role="img"
-      aria-label="Bongo DB Logo"
+      aria-label="Bongo ERD Logo"
       width={265}
       height={50}
       viewBox="0 0 265 50"

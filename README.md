@@ -1,7 +1,7 @@
 <h1 align="center">
-  <img src="./frontend/apps/app/app/icon.svg" alt="Bongo DB" width="72">
+  <img src="./frontend/apps/app/app/icon.svg" alt="Bongo ERD" width="72">
   <br>
-  Bongo DB
+  Bongo ERD
 </h1>
 
 <h2 align="center">
@@ -12,9 +12,9 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache%202-blue" /></a>
 </p>
 
-## What's Bongo DB?
+## What's Bongo ERD?
 
-Bongo DB is a personal fork of [Liam ERD](https://github.com/liam-hq/liam), a tool that generates beautiful, interactive ER diagrams from your database and lets you iterate on schema design through a multi-agent chat workflow.
+Bongo ERD is a personal fork of [Liam ERD](https://github.com/liam-hq/liam), a tool that generates beautiful, interactive ER diagrams from your database and lets you iterate on schema design through a multi-agent chat workflow.
 
 - **Beautiful UI & Interactive**: A clean design and intuitive features (like panning, zooming, and filtering) make it easy to understand even the most complex databases.
 - **Simple Reverse Engineering**: Seamlessly turn your existing database schemas into clear, readable diagrams.
@@ -47,6 +47,6 @@ See [CLAUDE.md](CLAUDE.md) for day-to-day development commands.
 
 ## License
 
-Bongo DB is licensed under the [Apache License Version 2.0](LICENSE), the same license as the upstream project it's forked from ([liam-hq/liam](https://github.com/liam-hq/liam)).
+Bongo ERD is licensed under the [Apache License Version 2.0](LICENSE), the same license as the upstream project it's forked from ([liam-hq/liam](https://github.com/liam-hq/liam)).
 
 Licenses for third-party packages can be found in [docs/packages-license.md](docs/packages-license.md).
