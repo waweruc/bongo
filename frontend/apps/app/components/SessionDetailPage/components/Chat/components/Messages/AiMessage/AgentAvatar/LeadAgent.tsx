@@ -19,7 +19,7 @@ export const LeadAgent: FC<Props> = (props) => {
       <g clipPath={`url(#${clipPathId})`}>
         <path
           d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z"
-          fill="#1DED83"
+          fill="#C89B3C"
         />
         <rect
           x="5.57153"

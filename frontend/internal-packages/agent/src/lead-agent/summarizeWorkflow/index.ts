@@ -9,6 +9,8 @@ import { fromAsyncThrowable } from '@liam-hq/neverthrow'
 import type { ResultAsync } from 'neverthrow'
 import { SSE_EVENTS } from '../../streaming/constants'
 import type { WorkflowState } from '../../types'
+import { LLM_CLIENT_CONFIG, LLM_MODEL } from '../../utils/llmConfig'
+import { repairDanglingToolCalls } from '../../utils/messageCleanup'
 import { streamLLMResponse } from '../../utils/streamingLlmUtils'
 
 const AGENT_NAME = 'lead' as const
@@ -41,8 +43,8 @@ function generateWorkflowSummary(
   state: WorkflowState,
 ): ResultAsync<AIMessage, Error> {
   const llm = new ChatOpenAI({
-    model: 'gpt-5-nano',
-    reasoning: { effort: 'minimal' },
+    model: LLM_MODEL,
+    ...LLM_CLIENT_CONFIG,
   })
 
   const summaryPrompt = `Based on the following workflow conversation about database design, provide a concise summary of what was accomplished:
@@ -55,8 +57,10 @@ Please summarize:
 
 Keep the summary informative but concise, focusing on the key achievements and decisions made during this database design session.`
 
+  const cleanedMessages = repairDanglingToolCalls(state.messages)
+
   const stream = fromAsyncThrowable(() =>
-    llm.stream([new SystemMessage(summaryPrompt), ...state.messages]),
+    llm.stream([new SystemMessage(summaryPrompt), ...cleanedMessages]),
   )
 
   const response = fromAsyncThrowable((stream: AsyncIterable<AIMessageChunk>) =>

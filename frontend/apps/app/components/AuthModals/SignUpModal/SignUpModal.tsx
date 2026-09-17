@@ -1,10 +1,10 @@
 'use client'
 
 import {
+  BongoLogoMark,
   Button,
   GithubLogo,
   Input,
-  LiamLogoMark,
   ModalContent,
   ModalOverlay,
   ModalPortal,
@@ -67,9 +67,9 @@ export const SignUpModal: FC<Props> = ({
 
             <div className={authStyles.authContent}>
               <div className={authStyles.titleWrapper}>
-                <LiamLogoMark className={authStyles.logoMark} />
+                <BongoLogoMark className={authStyles.logoMark} />
                 <ModalTitle className={authStyles.title}>
-                  Welcome to Liam DB
+                  Welcome to Bongo DB
                 </ModalTitle>
               </div>
 

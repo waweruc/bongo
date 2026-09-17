@@ -11,6 +11,8 @@ import { okAsync, ResultAsync } from 'neverthrow'
 import * as v from 'valibot'
 import { SSE_EVENTS } from '../streaming/constants'
 import type { Reasoning } from '../types'
+import { LLM_CLIENT_CONFIG, LLM_MODEL } from '../utils/llmConfig'
+import { repairDanglingToolCalls } from '../utils/messageCleanup'
 import { streamLLMResponse } from '../utils/streamingLlmUtils'
 import { reasoningSchema } from '../utils/validationSchema'
 import type { ToolConfigurable } from './getToolConfigurable'
@@ -24,12 +26,10 @@ import { createMigrationTool } from './tools/createMigrationTool'
 const AGENT_NAME = 'db' as const
 
 const model = new ChatOpenAI({
-  model: 'gpt-5-mini',
-  reasoning: { effort: 'low', summary: 'detailed' },
-  useResponsesApi: true,
+  model: LLM_MODEL,
   streaming: true,
+  ...LLM_CLIENT_CONFIG,
 }).bindTools([createMigrationTool], {
-  strict: true,
   tool_choice: 'auto',
 })
 
@@ -46,13 +46,14 @@ export const invokeDesignAgent = (
   const formatContextPrompt = ResultAsync.fromSafePromise(
     contextPromptTemplate.format(variables),
   )
+  const cleanedMessages = repairDanglingToolCalls(messages)
 
   const stream = fromAsyncThrowable((contextPrompt: string) =>
     model.stream(
       [
         new SystemMessage(SYSTEM_PROMPT),
         new HumanMessage(contextPrompt),
-        ...messages,
+        ...cleanedMessages,
       ],
       { configurable },
     ),

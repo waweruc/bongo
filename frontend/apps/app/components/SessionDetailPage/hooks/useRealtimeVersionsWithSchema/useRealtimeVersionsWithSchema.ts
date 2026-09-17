@@ -48,18 +48,18 @@ export function useRealtimeVersionsWithSchema({
       if (targetVersion === null) return
 
       startTransition(async () => {
-        try {
-          const buildingSchema = await buildCurrentSchema(targetVersion)
-          const parsed = v.safeParse(schemaSchema, buildingSchema)
-          if (!parsed.success) {
-            handleError(new Error('Invalid schema format'))
-            return
-          }
-          const currentSchema = parsed.output
-          setDisplayedSchema(currentSchema)
-        } catch (error) {
-          handleError(error)
-        }
+        const result = await buildCurrentSchema(targetVersion)
+        result.match(
+          (buildingSchema) => {
+            const parsed = v.safeParse(schemaSchema, buildingSchema)
+            if (!parsed.success) {
+              handleError(new Error('Invalid schema format'))
+              return
+            }
+            setDisplayedSchema(parsed.output)
+          },
+          (error) => handleError(error),
+        )
       })
     },
     [handleError],

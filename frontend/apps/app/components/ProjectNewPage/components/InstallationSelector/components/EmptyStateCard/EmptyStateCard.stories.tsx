@@ -39,8 +39,8 @@ type Story = StoryObj<typeof EmptyStateCard>
 export const NoInstallations: Story = {
   args: {
     description:
-      'No GitHub installations found. Please install the Liam app on your repositories.',
-    actionText: 'Install Liam',
+      'No GitHub installations found. Please install the Bongo DB app on your repositories.',
+    actionText: 'Install Bongo DB',
     actionDisabled: false,
   },
 }
@@ -57,7 +57,7 @@ export const NoRepositories: Story = {
 export const Disabled: Story = {
   args: {
     description: 'Loading your GitHub installations...',
-    actionText: 'Install Liam',
+    actionText: 'Install Bongo DB',
     actionDisabled: true,
   },
 }

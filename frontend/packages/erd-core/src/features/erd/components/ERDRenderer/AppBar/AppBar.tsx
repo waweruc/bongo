@@ -1,5 +1,5 @@
 import {
-  LiamLogoMark,
+  BongoLogoMark,
   TooltipContent,
   TooltipPortal,
   TooltipProvider,
@@ -26,13 +26,8 @@ export const AppBar: FC = () => {
         <TooltipProvider>
           <TooltipRoot>
             <TooltipTrigger asChild>
-              <a
-                href="https://liambx.com"
-                target="_blank"
-                rel="noreferrer"
-                className={styles.iconWrapper}
-              >
-                <LiamLogoMark className={styles.logo} />
+              <a href="/" className={styles.iconWrapper}>
+                <BongoLogoMark className={styles.logo} />
               </a>
             </TooltipTrigger>
             <TooltipPortal>
@@ -42,7 +37,7 @@ export const AppBar: FC = () => {
         </TooltipProvider>
       </div>
 
-      <h1 className={styles.title}>Liam ERD</h1>
+      <h1 className={styles.title}>Bongo DB</h1>
 
       <div className={styles.rightSide}>
         <div className={styles.iconButtonGroup}>

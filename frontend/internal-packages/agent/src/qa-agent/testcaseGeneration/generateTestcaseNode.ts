@@ -6,7 +6,11 @@ import {
 import { ChatOpenAI } from '@langchain/openai'
 import { fromAsyncThrowable } from '@liam-hq/neverthrow'
 import { yamlSchemaDeparser } from '@liam-hq/schema'
-import { removeReasoningFromMessages } from '../../utils/messageCleanup'
+import { LLM_CLIENT_CONFIG, LLM_MODEL } from '../../utils/llmConfig'
+import {
+  removeReasoningFromMessages,
+  repairDanglingToolCalls,
+} from '../../utils/messageCleanup'
 import { streamLLMResponse } from '../../utils/streamingLlmUtils'
 import { saveTestcaseTool } from '../tools/saveTestcaseTool'
 import { formatPreviousFailures } from '../utils/formatPreviousFailures'
@@ -17,12 +21,9 @@ import {
 import type { testcaseAnnotation } from './testcaseAnnotation'
 
 const model = new ChatOpenAI({
-  model: 'gpt-5-mini',
-  reasoning: { effort: 'minimal', summary: 'auto' },
-  verbosity: 'low',
-  useResponsesApi: true,
+  model: LLM_MODEL,
+  ...LLM_CLIENT_CONFIG,
 }).bindTools([saveTestcaseTool], {
-  strict: true,
   parallel_tool_calls: false,
   tool_choice: 'required', // Force LLM to always call the tool
 })
@@ -54,7 +55,9 @@ export async function generateTestcaseNode(
     previousFailures,
   })
 
-  const cleanedMessages = removeReasoningFromMessages(messages)
+  const cleanedMessages = repairDanglingToolCalls(
+    removeReasoningFromMessages(messages),
+  )
 
   const streamModel = fromAsyncThrowable(() => {
     return model.stream(

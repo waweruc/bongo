@@ -3,6 +3,8 @@
 import type { BaseMessage } from '@langchain/core/messages'
 import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
+import { useViewMode } from '../../hooks/viewMode'
+import { ChatInput } from '../ChatInput'
 import type { OutputTabValue } from '../Output/constants'
 import styles from './Chat.module.css'
 import { ErrorDisplay } from './components/ErrorDisplay'
@@ -16,6 +18,8 @@ type Props = {
   isWorkflowRunning?: boolean
   error?: string | null
   onNavigate: (tab: OutputTabValue) => void
+  onSendMessage: (text: string) => void
+  onCancelStreaming: () => void
 }
 
 export const Chat: FC<Props> = ({
@@ -23,7 +27,10 @@ export const Chat: FC<Props> = ({
   isWorkflowRunning = false,
   onNavigate,
   error,
+  onSendMessage,
+  onCancelStreaming,
 }) => {
+  const { isPublic } = useViewMode()
   const { containerRef, scrollToBottom } = useScrollToBottom<HTMLDivElement>(
     messages.length,
   )
@@ -67,6 +74,13 @@ export const Chat: FC<Props> = ({
           onClick={scrollToBottom}
         />
       </div>
+      {!isPublic && (
+        <ChatInput
+          isStreaming={isWorkflowRunning}
+          onSend={onSendMessage}
+          onCancel={onCancelStreaming}
+        />
+      )}
     </div>
   )
 }

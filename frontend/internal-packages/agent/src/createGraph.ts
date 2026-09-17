@@ -9,7 +9,9 @@ import { convertRequirementsToPrompt } from './db-agent/utils/convertAnalyzedReq
 import { createLeadAgentGraph } from './lead-agent/createLeadAgentGraph'
 import { createPmAgentGraph } from './pm-agent/createPmAgentGraph'
 import { createQaAgentGraph } from './qa-agent/createQaAgentGraph'
+import { SAVE_TESTCASE_TOOL_NAME } from './qa-agent/tools/saveTestcaseTool'
 import type { WorkflowState } from './types'
+import { excludeToolCallRoundtrips } from './utils/messageCleanup'
 import { validateInitialSchemaNode } from './workflow/nodes/validateInitialSchemaNode'
 import { workflowAnnotation } from './workflowAnnotation'
 
@@ -48,7 +50,16 @@ export const createGraph = (checkpointer?: BaseCheckpointSaver) => {
       recursionLimit: QA_AGENT_RECURSION_LIMIT,
     })
 
-    return { ...state, ...output }
+    // Keep the per-test-case saveTestcase round-trips out of the shared
+    // thread history - the final run-test result already summarizes what
+    // matters, and the raw per-call noise would otherwise make every future
+    // turn's request to the model grow without bound (see
+    // excludeToolCallRoundtrips docs).
+    const messages = output.messages
+      ? excludeToolCallRoundtrips(output.messages, [SAVE_TESTCASE_TOOL_NAME])
+      : output.messages
+
+    return { ...state, ...output, messages }
   }
 
   const callPmAgent = async (state: WorkflowState, config: RunnableConfig) => {

@@ -30,7 +30,7 @@
       var(--primary-gradation-overlay-end, rgba(29, 237, 131, 0)) 99.35%
     )
   );
-  border: 1px solid var(--primary-color, #1ded83);
+  border: 1px solid var(--primary-color, #c89b3c);
   border-radius: var(--border-radius-xl, 0.75rem);
   box-shadow:
     0px 0px 20px 0px rgba(29, 237, 131, 0.4),

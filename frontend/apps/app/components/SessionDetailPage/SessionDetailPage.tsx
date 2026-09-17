@@ -120,6 +120,18 @@ const SessionDetailPageInner: FC<InnerProps> = async ({
   const { isPublic: initialIsPublic } =
     await checkPublicShareStatus(designSessionId)
 
+  const supabase = await createClient()
+  const { data: userData } = await supabase.auth.getUser()
+  const currentUserName = userData?.user
+    ? ((
+        await supabase
+          .from('users')
+          .select('name')
+          .eq('id', userData.user.id)
+          .single()
+      ).data?.name ?? null)
+    : null
+
   return (
     <SessionDetailPageClient
       buildingSchemaId={buildingSchema.id}
@@ -132,6 +144,7 @@ const SessionDetailPageInner: FC<InnerProps> = async ({
       initialIsPublic={initialIsPublic}
       initialWorkflowError={workflowError}
       panelSizes={panelSizes}
+      currentUserName={currentUserName}
     />
   )
 }

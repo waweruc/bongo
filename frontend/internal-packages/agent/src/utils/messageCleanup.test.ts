@@ -1,6 +1,7 @@
-import { AIMessage, HumanMessage } from '@langchain/core/messages'
+import { AIMessage, HumanMessage, ToolMessage } from '@langchain/core/messages'
 import { describe, expect, it } from 'vitest'
 import {
+  excludeToolCallRoundtrips,
   removeReasoningFromMessage,
   removeReasoningFromMessages,
 } from './messageCleanup'
@@ -158,6 +159,94 @@ describe('messageCleanup', () => {
     it('should handle empty message array', () => {
       const result = removeReasoningFromMessages([])
       expect(result).toEqual([])
+    })
+  })
+
+  describe('excludeToolCallRoundtrips', () => {
+    it('drops an AIMessage/ToolMessage round-trip for an excluded tool name', () => {
+      const human = new HumanMessage('do the thing')
+      const aiCall = new AIMessage({
+        content: '',
+        tool_calls: [{ id: 'call-1', name: 'saveTestcase', args: {} }],
+      })
+      const toolResult = new ToolMessage({
+        content: 'saved',
+        tool_call_id: 'call-1',
+      })
+      const finalAi = new AIMessage({ content: 'done' })
+
+      const result = excludeToolCallRoundtrips(
+        [human, aiCall, toolResult, finalAi],
+        ['saveTestcase'],
+      )
+
+      expect(result).toEqual([human, finalAi])
+    })
+
+    it('drops multiple consecutive round-trips for the excluded tool', () => {
+      const messages = [
+        new AIMessage({
+          content: '',
+          tool_calls: [{ id: 'call-1', name: 'saveTestcase', args: {} }],
+        }),
+        new ToolMessage({ content: 'saved 1', tool_call_id: 'call-1' }),
+        new AIMessage({
+          content: '',
+          tool_calls: [{ id: 'call-2', name: 'saveTestcase', args: {} }],
+        }),
+        new ToolMessage({ content: 'saved 2', tool_call_id: 'call-2' }),
+      ]
+
+      const result = excludeToolCallRoundtrips(messages, ['saveTestcase'])
+
+      expect(result).toEqual([])
+    })
+
+    it('keeps round-trips for tool names that are not excluded', () => {
+      const aiCall = new AIMessage({
+        content: '',
+        tool_calls: [{ id: 'call-1', name: 'runTestTool', args: {} }],
+      })
+      const toolResult = new ToolMessage({
+        content: '49/57 passed',
+        tool_call_id: 'call-1',
+      })
+
+      const result = excludeToolCallRoundtrips(
+        [aiCall, toolResult],
+        ['saveTestcase'],
+      )
+
+      expect(result).toEqual([aiCall, toolResult])
+    })
+
+    it('keeps an AIMessage whose tool_calls are only partially excluded', () => {
+      const aiCall = new AIMessage({
+        content: '',
+        tool_calls: [
+          { id: 'call-1', name: 'saveTestcase', args: {} },
+          { id: 'call-2', name: 'runTestTool', args: {} },
+        ],
+      })
+      const toolResult1 = new ToolMessage({
+        content: 'saved',
+        tool_call_id: 'call-1',
+      })
+      const toolResult2 = new ToolMessage({
+        content: 'ran',
+        tool_call_id: 'call-2',
+      })
+
+      const result = excludeToolCallRoundtrips(
+        [aiCall, toolResult1, toolResult2],
+        ['saveTestcase'],
+      )
+
+      expect(result).toEqual([aiCall, toolResult1, toolResult2])
+    })
+
+    it('handles empty message array', () => {
+      expect(excludeToolCallRoundtrips([], ['saveTestcase'])).toEqual([])
     })
   })
 })

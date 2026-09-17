@@ -138,25 +138,25 @@ export const FileIcon: FC<Props> = ({
           </g>
           <path
             d="M46.0176 46.75H76.4463L90 60.582V100.732C90 101.847 89.0966 102.75 87.9824 102.75H46.0176C44.9034 102.75 44 101.847 44 100.732V48.7676C44 47.7229 44.7941 46.8639 45.8115 46.7607L46.0176 46.75Z"
-            stroke="#1DED83"
+            stroke="#C89B3C"
             strokeWidth="2"
           />
           <path
             d="M75.5688 46.8263V61.2447L89.7903 61.2445"
-            stroke="#1DED83"
+            stroke="#C89B3C"
             strokeWidth="2"
             strokeLinecap="round"
           />
           <path
             d="M73 71.75L67 65.75L61 71.75"
-            stroke="#1DED83"
+            stroke="#C89B3C"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
             d="M67 65.75V79.75"
-            stroke="#1DED83"
+            stroke="#C89B3C"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

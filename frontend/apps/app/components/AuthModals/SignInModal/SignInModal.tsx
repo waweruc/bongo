@@ -1,8 +1,8 @@
 'use client'
 
 import {
+  BongoLogoMark,
   GithubLogo,
-  LiamLogoMark,
   ModalContent,
   ModalOverlay,
   ModalPortal,
@@ -47,9 +47,9 @@ export const SignInModal: FC<Props> = ({
 
             <div className={authStyles.authContent}>
               <div className={authStyles.titleWrapper}>
-                <LiamLogoMark className={authStyles.logoMark} />
+                <BongoLogoMark className={authStyles.logoMark} />
                 <ModalTitle className={authStyles.title}>
-                  Sign in to Liam DB
+                  Sign in to Bongo DB
                 </ModalTitle>
               </div>
 

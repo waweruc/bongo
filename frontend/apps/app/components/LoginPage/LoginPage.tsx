@@ -1,4 +1,4 @@
-import { LiamLogoMark } from '@liam-hq/ui'
+import { BongoLogoMark } from '@liam-hq/ui'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '../../libs/db/server'
@@ -32,8 +32,8 @@ export async function LoginPage() {
       <div className={styles.cardContainer}>
         <div className={styles.card}>
           <div className={styles.titleWrapper}>
-            <LiamLogoMark className={styles.logoMark} />
-            <h1 className={styles.title}>Sign in to Liam DB</h1>
+            <BongoLogoMark className={styles.logoMark} />
+            <h1 className={styles.title}>Sign in to Bongo DB</h1>
           </div>
 
           <div className={styles.oauthList}>

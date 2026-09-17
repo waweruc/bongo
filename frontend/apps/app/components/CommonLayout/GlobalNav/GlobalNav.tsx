@@ -1,8 +1,8 @@
 import {
   BaseGlobalNav,
+  BongoDbLogo,
+  BongoLogoMark,
   LayoutGrid,
-  LiamDbLogo,
-  LiamLogoMark,
   Settings,
 } from '@liam-hq/ui'
 import Link from 'next/link'
@@ -34,10 +34,10 @@ export const GlobalNav: FC<Props> = ({
             href="/design_sessions/new"
             className={itemStyles.iconContainer}
           >
-            <LiamLogoMark />
+            <BongoLogoMark />
           </Link>
           <Link href="/design_sessions/new" className={itemStyles.labelArea}>
-            <LiamDbLogo className={styles.liamMigrationLogo} />
+            <BongoDbLogo className={styles.liamMigrationLogo} />
           </Link>
         </>
       }

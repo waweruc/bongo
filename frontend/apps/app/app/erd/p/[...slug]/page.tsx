@@ -205,7 +205,7 @@ export async function generateMetadata({
     return joinedPath
   })()
 
-  const metaTitle = `${projectName} - Liam ERD`
+  const metaTitle = `${projectName} - Bongo DB`
   const metaDescription =
     'Generate ER diagrams effortlessly by entering a schema file URL. Ideal for visualizing, reviewing, and documenting schemas.'
 

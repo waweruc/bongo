@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  HumanMessage,
   mapStoredMessagesToChatMessages,
   type StoredMessage,
 } from '@langchain/core/messages'
@@ -37,6 +38,7 @@ type Props = {
   initialIsPublic: boolean
   initialWorkflowError?: string | null
   panelSizes: number[]
+  currentUserName?: string | null
 }
 
 // Determine the initial active tab based on available data
@@ -63,6 +65,7 @@ export const SessionDetailPageClient: FC<Props> = ({
   initialIsPublic,
   initialWorkflowError,
   panelSizes,
+  currentUserName = null,
 }) => {
   const [activeTab, setActiveTab] = useState<OutputTabValue | undefined>(
     determineInitialTab(initialVersions, initialAnalyzedRequirements),
@@ -92,12 +95,35 @@ export const SessionDetailPageClient: FC<Props> = ({
   )
 
   const chatMessages = mapStoredMessagesToChatMessages(initialMessages)
-  const { isStreaming, messages, analyzedRequirements, start, replay, error } =
-    useStream({
-      initialMessages: chatMessages,
-      initialAnalyzedRequirements,
-      designSessionId,
-    })
+  const {
+    isStreaming,
+    messages,
+    setMessages,
+    analyzedRequirements,
+    start,
+    replay,
+    error,
+    abortWorkflow,
+  } = useStream({
+    initialMessages: chatMessages,
+    initialAnalyzedRequirements,
+    designSessionId,
+  })
+
+  const handleSendMessage = useCallback(
+    (text: string) => {
+      setMessages((prev) => [
+        ...prev,
+        new HumanMessage({
+          id: crypto.randomUUID(),
+          content: text,
+          additional_kwargs: { userName: currentUserName ?? undefined },
+        }),
+      ])
+      start({ designSessionId, userInput: text })
+    },
+    [designSessionId, start, setMessages, currentUserName],
+  )
 
   useEffect(() => {
     if (
@@ -179,6 +205,8 @@ export const SessionDetailPageClient: FC<Props> = ({
                 isWorkflowRunning={isStreaming}
                 onNavigate={setActiveTab}
                 error={combinedError}
+                onSendMessage={handleSendMessage}
+                onCancelStreaming={abortWorkflow}
               />
             </div>
           </div>

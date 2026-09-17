@@ -68,7 +68,10 @@ const meta = {
       ],
     },
   },
-  args: {},
+  args: {
+    onSendMessage: () => {},
+    onCancelStreaming: () => {},
+  },
 } satisfies Meta<typeof Chat>
 
 export default meta
@@ -79,6 +82,8 @@ export const Default: Story = {
   args: {
     messages: MESSAGES,
     onNavigate: () => {},
+    onSendMessage: () => {},
+    onCancelStreaming: () => {},
   },
 }
 
@@ -86,12 +91,16 @@ export const AnimatedDemo: Story = {
   args: {
     messages: MESSAGES,
     onNavigate: () => {},
+    onSendMessage: () => {},
+    onCancelStreaming: () => {},
   },
   render: (props) => <AnimatedChatDemo {...props} />,
 }
 
 export const WithComplexMessages: Story = {
   args: {
+    onSendMessage: () => {},
+    onCancelStreaming: () => {},
     messages: [
       aMessage('human', {
         content: 'Design a database for an e-commerce platform',

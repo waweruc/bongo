@@ -5,6 +5,7 @@ import { fromPromise } from '@liam-hq/neverthrow'
 import { yamlSchemaDeparser } from '@liam-hq/schema'
 import * as v from 'valibot'
 import { toJsonSchema } from '../../utils/jsonSchema'
+import { LLM_CLIENT_CONFIG, LLM_MODEL } from '../../utils/llmConfig'
 import type { testcaseAnnotation } from './testcaseAnnotation'
 
 const validationResultSchema = v.object({
@@ -19,9 +20,11 @@ const validationResultSchema = v.object({
 })
 
 const model = new ChatOpenAI({
-  model: 'o4-mini',
+  model: LLM_MODEL,
+  ...LLM_CLIENT_CONFIG,
 }).withStructuredOutput<v.InferOutput<typeof validationResultSchema>>(
   toJsonSchema(validationResultSchema),
+  { method: 'functionCalling' },
 )
 
 const SYSTEM_PROMPT = `

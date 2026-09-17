@@ -1,9 +1,9 @@
 import {
+  BongoLogoMark,
   BookText,
   Eye,
   EyeOff,
   GithubLogo,
-  LiamLogoMark,
   Megaphone,
   MessagesSquare,
   Sidebar,
@@ -61,7 +61,7 @@ export const LeftPane = () => {
         href: 'https://liambx.com/',
         noreferrer: version.displayedOn === 'cli',
         target: '_blank',
-        icon: <LiamLogoMark className={styles.icon} />,
+        icon: <BongoLogoMark className={styles.icon} />,
       },
       {
         label: 'Go to GitHub',

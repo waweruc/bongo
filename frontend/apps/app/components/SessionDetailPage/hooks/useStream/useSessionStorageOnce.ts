@@ -22,18 +22,33 @@ export function useSessionStorageOnce(
     return () => {}
   }, [])
 
+  const cacheRef = useRef<{ raw: string; message: BaseMessage | null } | null>(
+    null,
+  )
+
   const getSnapshot = useCallback(() => {
     if (typeof window === 'undefined') return null
     const stored = sessionStorage.getItem(key)
     if (!stored) return null
 
+    // useSyncExternalStore requires a referentially stable snapshot when the
+    // underlying source hasn't changed, so cache by the raw string instead of
+    // parsing (and allocating a new message object) on every call.
+    if (cacheRef.current?.raw === stored) {
+      return cacheRef.current.message
+    }
+
+    let message: BaseMessage | null
     try {
       const parsed = JSON.parse(stored)
-      const message = coerceMessageLikeToMessage(parsed)
-      return isHumanMessage(message) ? message : null
+      const coerced = coerceMessageLikeToMessage(parsed)
+      message = isHumanMessage(coerced) ? coerced : null
     } catch {
-      return null
+      message = null
     }
+
+    cacheRef.current = { raw: stored, message }
+    return message
   }, [key])
 
   const getServerSnapshot = useCallback(() => null, [])

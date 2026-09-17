@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, LiamLogoMark } from '@liam-hq/ui'
+import { BongoLogoMark, Button } from '@liam-hq/ui'
 import { useState, useTransition } from 'react'
 import { acceptInvitation } from './actions/acceptInvitation'
 import styles from './InvitationCard.module.css'
@@ -46,7 +46,7 @@ export function InvitationCard({
           {organizationName ? (
             <>
               <div>
-                <LiamLogoMark width={40} height={40} />
+                <BongoLogoMark width={40} height={40} />
               </div>
 
               <h1 className={styles.greeting}>Hi, {currentUser.email}!</h1>
@@ -56,7 +56,7 @@ export function InvitationCard({
                 <strong className={styles.organizationName}>
                   {organizationName}
                 </strong>{' '}
-                organization on Liam DB.
+                organization on Bongo DB.
                 <br />
                 Please accept the invitation below to join.
               </div>
@@ -64,7 +64,7 @@ export function InvitationCard({
           ) : (
             <>
               <div>
-                <LiamLogoMark width={40} height={40} />
+                <BongoLogoMark width={40} height={40} />
               </div>
               <div className={styles.description}>
                 This invitation link is invalid or has expired.

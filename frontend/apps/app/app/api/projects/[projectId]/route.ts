@@ -23,7 +23,7 @@ async function getProjects(): Promise<Tables<'projects'>[]> {
   const mockProjects: Tables<'projects'>[] = [
     {
       id: '00000000-0000-0000-0000-000000000001',
-      name: 'Liam HQ',
+      name: 'Bongo HQ',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       organization_id: '00000000-0000-0000-0000-000000000001',

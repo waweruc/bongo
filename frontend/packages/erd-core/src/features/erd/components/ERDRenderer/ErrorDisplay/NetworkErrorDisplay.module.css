@@ -30,7 +30,7 @@
   align-self: stretch;
   font-family: var(--message-font, Montserrat);
   font-size: var(--font-size-18, 48px);
-  color: var(--primary-color, #1ded83);
+  color: var(--primary-color, #c89b3c);
   text-align: center;
 }
 

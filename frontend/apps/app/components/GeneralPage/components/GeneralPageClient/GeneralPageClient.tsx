@@ -91,7 +91,7 @@ export function GeneralPageClient({
                 className={styles.input}
               />
               <p className={styles.helperText}>
-                This is your team's visible name within Liam DB. For example,
+                This is your team's visible name within Bongo DB. For example,
                 the name of your company or team.
               </p>
             </div>
@@ -122,7 +122,7 @@ export function GeneralPageClient({
             <div className={styles.inputContainer}>
               <p className={styles.dangerText}>
                 Permanently remove your organization and all of its contents
-                from the Liam DB.
+                from Bongo DB.
                 <br />
                 This action is not reversible — please continue with caution.
               </p>

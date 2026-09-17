@@ -10,7 +10,11 @@ import { okAsync, ResultAsync } from 'neverthrow'
 import * as v from 'valibot'
 import { SSE_EVENTS } from '../streaming/constants'
 import type { Reasoning, WorkflowConfigurable } from '../types'
-import { removeReasoningFromMessages } from '../utils/messageCleanup'
+import { LLM_CLIENT_CONFIG, LLM_MODEL } from '../utils/llmConfig'
+import {
+  removeReasoningFromMessages,
+  repairDanglingToolCalls,
+} from '../utils/messageCleanup'
 import { streamLLMResponse } from '../utils/streamingLlmUtils'
 import { reasoningSchema } from '../utils/validationSchema'
 import {
@@ -22,13 +26,11 @@ import { processAnalyzedRequirementsTool } from './tools/processAnalyzedRequirem
 const AGENT_NAME = 'pm' as const
 
 const model = new ChatOpenAI({
-  model: 'gpt-5',
-  reasoning: { effort: 'medium', summary: 'detailed' },
-  useResponsesApi: true,
+  model: LLM_MODEL,
   streaming: true,
+  ...LLM_CLIENT_CONFIG,
 }).bindTools([processAnalyzedRequirementsTool], {
   parallel_tool_calls: false,
-  strict: true,
   tool_choice: 'required',
 })
 
@@ -46,7 +48,9 @@ export const invokePmAnalysisAgent = (
   messages: BaseMessage[],
   configurable: WorkflowConfigurable,
 ): ResultAsync<AnalysisWithReasoning, Error> => {
-  const cleanedMessages = removeReasoningFromMessages(messages)
+  const cleanedMessages = repairDanglingToolCalls(
+    removeReasoningFromMessages(messages),
+  )
 
   const formatPrompt = ResultAsync.fromSafePromise(
     pmAnalysisPrompt.format(variables),

@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/nextjs'
 import {
+  BongoDbLogo,
+  BongoLogoMark,
   GithubLogo,
-  LiamDbLogo,
   LiamLogo,
-  LiamLogoMark,
   LinkedInLogo,
   XLogo,
 } from './index'
 
 const LogoShowcase = () => {
   const logosMap = {
+    BongoDbLogo,
+    BongoLogoMark,
     GithubLogo,
-    LiamDbLogo,
     LiamLogo,
-    LiamLogoMark,
     LinkedInLogo,
     XLogo,
   }

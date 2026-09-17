@@ -20,7 +20,7 @@ const InvitationEmail = ({
       </head>
       <body>
         <h1>You've been invited to join ${organizationName}</h1>
-        <p>You have been invited to join ${organizationName} on Liam.</p>
+        <p>You have been invited to join ${organizationName} on Bongo DB.</p>
         <p>Click the link below to accept the invitation:</p>
         <a href="${invitationLink}">Accept Invitation</a>
         <p>If you did not expect this invitation, you can safely ignore this email.</p>
@@ -81,9 +81,9 @@ export const sendInvitationEmail = async ({
   const resend = new Resend(process.env.RESEND_API_KEY)
   const fromAddress = process.env.RESEND_EMAIL_FROM_ADDRESS || 'liam@resend.dev'
   const { error: emailError } = await resend.emails.send({
-    from: `Liam<${fromAddress}>`,
+    from: `Bongo DB<${fromAddress}>`,
     to: email,
-    subject: `Invitation to join ${orgData.name} on Liam`,
+    subject: `Invitation to join ${orgData.name} on Bongo DB`,
     html: InvitationEmail({
       organizationName: orgData.name,
       invitationLink,

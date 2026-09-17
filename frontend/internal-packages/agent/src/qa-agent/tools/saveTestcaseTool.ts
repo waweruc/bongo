@@ -15,7 +15,8 @@ import type { testcaseAnnotation } from '../testcaseGeneration/testcaseAnnotatio
 import { validatePgTapTest } from './validatePgTapTest'
 import { validateSqlSyntax } from './validateSqlSyntax'
 
-const TOOL_NAME = 'saveTestcase'
+export const SAVE_TESTCASE_TOOL_NAME = 'saveTestcase'
+const TOOL_NAME = SAVE_TESTCASE_TOOL_NAME
 
 const saveSqlToolSchema = v.object({
   sql: v.string(),
