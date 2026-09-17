@@ -12,6 +12,11 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache%202-blue" /></a>
 </p>
 
+<p align="center">
+  <img src="./assets/login.png" alt="Bongo ERD sign-in page" width="49%">
+  <img src="./assets/erd-view.png" alt="Bongo ERD schema design view" width="49%">
+</p>
+
 ## What's Bongo ERD?
 
 Bongo ERD is a personal fork of [Liam ERD](https://github.com/liam-hq/liam), a tool that generates beautiful, interactive ER diagrams from your database and lets you iterate on schema design through a multi-agent chat workflow.
